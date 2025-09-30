@@ -15,7 +15,7 @@ from security import valid_email, valid_password
 NOW = lambda: time.strftime("%Y-%m-%d %H:%M:%S")
 
 st.set_page_config(page_title="Login / Sign Up", page_icon="🔐", layout="wide")
-st.title("🔐 Personal Data Store — Login / Sign Up")
+st.title("Personal Data Store — Login / Sign Up")
 
 # ---------- CSS: rounded cards with title outside ----------
 st.markdown("""

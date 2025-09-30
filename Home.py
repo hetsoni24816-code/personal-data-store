@@ -1,3 +1,12 @@
+# 👇 add at the very top of your main script (e.g., streamlit_app.py or Home page)
+from db_init import init_schema
+try:
+    init_schema()  # idempotent; safe to call every run
+except Exception as e:
+    import streamlit as st
+    st.error(f"DB init failed: {e}")
+
+
 import streamlit as st
 
 st.set_page_config(page_title="Personal Data Store", page_icon="🔒", layout="wide")
