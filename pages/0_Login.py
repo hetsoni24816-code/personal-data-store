@@ -19,28 +19,24 @@ NOW = lambda: time.strftime("%Y-%m-%d %H:%M:%S")
 st.set_page_config(page_title="Login / Sign Up", page_icon="🔐", layout="wide")
 st.title("Personal Data Store — Login / Sign Up")
 
-# ---------- CSS: rounded cards with title outside ----------
+# ---------- CSS (rounded cards; no chip titles) ----------
 st.markdown(
     """
 <style>
+/* Sidebar theme */
 [data-testid="stSidebar"] { background-color: #0D2847; color: white; }
 [data-testid="stSidebar"] * { color: white !important; }
 
-/* Card shell */
-.card-wrap { position: relative; margin-top: 1.25rem; }
-.card-title {
-  position: absolute; top: -12px; left: 16px;
-  padding: 2px 10px; border-radius: 9999px; font-weight: 600;
-  background: var(--background-color);
-  border: 1px solid var(--secondary-background-color);
-  line-height: 1.6;
-}
+/* Card shell (no chip header) */
+.card-wrap { position: relative; margin-top: 0.75rem; }
 .card-container {
   border: 1px solid var(--secondary-background-color);
   border-radius: 16px; padding: 18px;
   background: var(--background-color);
   box-shadow: 0 1px 2px rgba(0,0,0,.04);
 }
+
+/* Full-width button inside forms */
 .block-btn button { width: 100% !important; }
 </style>
 """,
@@ -96,7 +92,7 @@ tab_login, tab_signup = st.tabs(["Log In", "Sign Up"])
 
 # ---------------- Log In ----------------
 with tab_login:
-    st.markdown('<div class="card-wrap"><div class="card-title">Sign in</div><div class="card-container">', unsafe_allow_html=True)
+    st.markdown('<div class="card-wrap"><div class="card-container">', unsafe_allow_html=True)
 
     with st.form("login_form", clear_on_submit=False):
         email_in = st.text_input("Email", key="login_email")
@@ -132,7 +128,7 @@ with tab_login:
 
 # ---------------- Sign Up ----------------
 with tab_signup:
-    st.markdown('<div class="card-wrap"><div class="card-title">Create an account</div><div class="card-container">', unsafe_allow_html=True)
+    st.markdown('<div class="card-wrap"><div class="card-container">', unsafe_allow_html=True)
 
     role_choice = st.radio(
         "Account type",
@@ -271,12 +267,10 @@ with tab_signup:
             elif not valid_email(email_norm):
                 st.error("Invalid email format.")
             else:
-                # Validate password first
                 ok_pw, msg_pw = valid_password(pw_new)
                 if not ok_pw:
                     st.error(msg_pw)
                 else:
-                    # Verify admin invite code from secrets
                     expected = (st.secrets.get("ADMIN_INVITE_CODE") if hasattr(st, "secrets") else None)
                     if not expected:
                         st.error("Admin signup not configured — missing ADMIN_INVITE_CODE in app secrets.")
