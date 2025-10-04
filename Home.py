@@ -3,7 +3,7 @@
 # --- Initialize DB schema before anything else ---
 from db_init import init_schema
 try:
-    init_schema()  # safe to call every run
+    init_schema()  # idempotent; safe every run
 except Exception as e:
     import streamlit as st
     st.error(f"DB init failed: {e}")
@@ -25,33 +25,21 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ---------- Header ----------
-st.title("🔒 Personal Data Store Platform")
+# ---------- Content ----------
+st.title("Personal Data Store Platform")
 
-st.write(
-    """
-    Welcome to the **Personal Data Store (PDS)** platform.  
-    Our mission is to give individuals **full control over their personal data**.  
-    You can securely upload, manage, and share datasets with organisations you trust — 
-    all while ensuring transparency and rewards for responsible data use.
-    """
-)
+st.markdown("""
+### Who we are  
+The Personal Data Store (PDS) is a secure platform that gives individuals full control over their personal information.  
+We help you manage your data safely, decide who can access it, and track how it is used — all in one place.
 
-st.markdown("### 🌟 What we do")
-st.markdown(
-    """
-    - **Secure Data Storage** — Your data is encrypted at rest.  
-    - **Permission Management** — You decide which organisations can access it.  
-    - **Consent & Transparency** — Every action is logged for accountability.  
-    - **Rewards System** — Organisations earn credits when they access your data responsibly.  
-    """
-)
+### What we do  
+- Provide a secure space to store your personal datasets.  
+- Let you decide which organisations can access your information.  
+- Record every action (upload, permission change, download) in an auditable consent log.  
+- Reward transparency and trust between individuals and organisations.  
 
-# ---------- Call to action ----------
-st.divider()
-st.markdown("👉 Get started by logging in or creating an account:")
+---
 
-st.page_link("pages/0_Login.py", label="🔐 Login / Sign Up", icon="🔑")
-
-st.divider()
-st.caption("Built for privacy, security, and trust.")
+[Go to Login / Sign Up](pages/0_Login.py)
+""")
