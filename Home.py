@@ -25,21 +25,24 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ---------- Content ----------
+# ---------- Main content ----------
 st.title("Personal Data Store Platform")
 
-st.markdown("""
-### Who we are  
-The Personal Data Store (PDS) is a secure platform that gives individuals full control over their personal information.  
-We help you manage your data safely, decide who can access it, and track how it is used — all in one place.
+st.write(
+    """
+    Welcome to the Personal Data Store (PDS) Platform.
 
-### What we do  
-- Provide a secure space to store your personal datasets.  
-- Let you decide which organisations can access your information.  
-- Record every action (upload, permission change, download) in an auditable consent log.  
-- Reward transparency and trust between individuals and organisations.  
+    Our platform empowers individuals to take control of their personal data.
+    - Users can securely upload and manage their own datasets.  
+    - Organisations can request access to user data for research or services.  
+    - Admins oversee transparency through logs and audit tools.  
 
----
+    Data is encrypted at rest, and every action — from uploads to permissions —
+    is logged for accountability and trust.
+    """
+)
 
-[Go to Login / Sign Up](pages/0_Login.py)
-""")
+# ---------- Navigation button ----------
+st.markdown("---")
+if st.button("Go to Login / Sign Up", use_container_width=True):
+    st.switch_page("pages/0_Login.py")
