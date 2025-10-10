@@ -16,40 +16,33 @@ st.markdown(
     """
     <style>
         [data-testid="stSidebar"] {
-            background-color: #0D2847; /* dark blue */
+            background-color: #0D2847;
             color: white;
         }
-        [data-testid="stSidebar"] * {
-            color: white !important;
-        }
+        [data-testid="stSidebar"] * { color: white !important; }
 
-        /* Slogan styling */
+        /* Layout + typography */
         .slogan {
             font-size: 28px;
-            font-weight: 700;
+            font-weight: 800;
             color: #0D2847;
             text-align: center;
-            margin-top: 20px;
-            margin-bottom: 40px;
+            margin: 16px 0 28px 0;
         }
+        .slogan .highlight { color: #0078FF; }
 
-        .highlight {
-            color: #0078FF;
-        }
-
-        .subtext {
-            font-size: 17px;
-            color: #333333;
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
             line-height: 1.6;
-            margin-left: 10%;
-            margin-right: 10%;
-            text-align: justify;
+            color: #e5e7eb; /* light text for dark themes */
         }
+        .content p { color: #d1d5db; font-size: 17px; }
+        .content ul { margin: 10px 0 10px 20px; }
+        .content li { margin: 6px 0; }
+        .content strong { color: #ffffff; }
 
-        .button-container {
-            text-align: center;
-            margin-top: 40px;
-        }
+        .button-wrap { text-align: center; margin-top: 24px; }
     </style>
     """,
     unsafe_allow_html=True
@@ -61,42 +54,48 @@ st.title("Personal Data Store Platform")
 st.markdown(
     """
     <div class="slogan">
-        <span class="highlight">Your Health Data.</span> 
-        <span class="highlight">Your Control.</span> 
-        <span class="highlight">Your Benefit.</span>
+      <span class="highlight">Your Health Data.</span>
+      <span class="highlight">Your Control.</span>
+      <span class="highlight">Your Benefit.</span>
     </div>
     """,
     unsafe_allow_html=True
 )
 
+# IMPORTANT: no leading spaces inside <div>, and use pure HTML (no **markdown**)
 st.markdown(
     """
-    <div class="subtext">
-        The Personal Data Store (PDS) Platform allows individuals to **securely upload their healthcare data** — 
-        such as medical reports, fitness records, or wellness metrics — into an encrypted personal vault.  
+<div class="content">
 
-        Organisations such as research institutes or health technology companies can then **request access** 
-        to these datasets to develop better healthcare solutions and innovations.  
+<p>The Personal Data Store (PDS) Platform enables individuals to securely upload their
+healthcare data—such as medical reports, fitness records, or wellness metrics—into an
+encrypted personal vault.</p>
 
-        You have complete control over the privacy of your data:
-        <ul>
-            <li><b>Private</b> – Only you can access it.</li>
-            <li><b>Trusted</b> – Approved organisations you select can view and use it.</li>
-            <li><b>Public</b> – Share openly to support global healthcare research.</li>
-        </ul>
+<p>Organisations (e.g., research institutes and health technology companies) can request
+access to these datasets to develop better healthcare solutions and innovations.</p>
 
-        Each time an organisation downloads your dataset, you earn <b>1 reward point</b> 
-        (worth <b>$0.10</b>). These rewards can accumulate over time, giving you 
-        tangible benefits for contributing to healthcare advancement.  
+<p>You have complete control over the privacy of every dataset you upload:</p>
+<ul>
+  <li><strong>Private</strong> — Only you can access it.</li>
+  <li><strong>Trusted</strong> — Only the approved organisations you select can view and use it.</li>
+  <li><strong>Public</strong> — Share openly to support global healthcare research.</li>
+</ul>
 
-        Every action — upload, access, and reward — is securely logged and fully transparent.
-    </div>
+<p>Each time an organisation downloads your dataset, you earn <strong>1 reward point</strong>
+(worth <strong>$0.10</strong>). Rewards accumulate over time, so you benefit directly from
+contributing to healthcare advancement.</p>
+
+<p>All actions—uploads, permission changes, access requests, downloads, and rewards—are
+securely logged for transparency and accountability.</p>
+
+<div class="button-wrap">
+</div>
+</div>
     """,
     unsafe_allow_html=True
 )
 
 # ---------- Navigation button ----------
-st.markdown('<div class="button-container">', unsafe_allow_html=True)
-if st.button("Go to Login / Sign Up", use_container_width=False):
+# Put the button after the HTML so Streamlit renders it as a native widget
+if st.button("Go to Login / Sign Up", use_container_width=True):
     st.switch_page("pages/0_Login.py")
-st.markdown('</div>', unsafe_allow_html=True)
