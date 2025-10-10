@@ -12,6 +12,7 @@ import streamlit as st
 
 # ---------- Page config & sidebar styling ----------
 st.set_page_config(page_title="Personal Data Store", page_icon="🔒", layout="wide")
+
 st.markdown(
     """
     <style>
@@ -21,36 +22,55 @@ st.markdown(
         }
         [data-testid="stSidebar"] * { color: white !important; }
 
-        /* Page styling */
+        /* Center title */
+        h1 {
+            text-align: center !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 800 !important;
+            color: #0D2847 !important;
+            margin-bottom: 10px;
+        }
+
+        /* Company slogan */
         .slogan {
-            font-size: 30px;
-            font-weight: 800;
-            color: #0D2847;
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
             text-align: center;
-            margin-top: 20px;
+            color: #0D2847;
+            margin-top: 10px;
             margin-bottom: 40px;
         }
-        .slogan .highlight { color: #0078FF; }
 
+        .slogan .highlight {
+            color: #0078FF;
+        }
+
+        /* Body text */
         .content {
             max-width: 900px;
             margin: 0 auto;
             line-height: 1.6;
-            color: #1E1E1E; /* dark grey text for light background */
+            color: #1E1E1E;
             font-size: 17px;
+            font-family: 'Inter', sans-serif;
         }
+
         .content p {
             color: #222222;
             font-size: 17px;
             text-align: justify;
         }
+
         .content ul {
             margin: 10px 0 10px 25px;
             color: #222222;
         }
+
         .content li {
             margin: 6px 0;
         }
+
         .content strong {
             color: #0D2847;
         }
