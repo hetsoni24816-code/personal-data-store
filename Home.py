@@ -26,7 +26,7 @@ st.markdown(
 )
 
 # ---------- Main content ----------
-st.title("Personal Data Store Platform")
+st.title("Personal Datass Store Platform")
 
 st.write(
     """
