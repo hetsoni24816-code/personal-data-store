@@ -16,18 +16,19 @@ st.markdown(
     """
     <style>
         [data-testid="stSidebar"] {
-            background-color: #0D2847;
+            background-color: #0D2847; /* dark blue */
             color: white;
         }
         [data-testid="stSidebar"] * { color: white !important; }
 
-        /* Layout + typography */
+        /* Page styling */
         .slogan {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 800;
             color: #0D2847;
             text-align: center;
-            margin: 16px 0 28px 0;
+            margin-top: 20px;
+            margin-bottom: 40px;
         }
         .slogan .highlight { color: #0078FF; }
 
@@ -35,14 +36,29 @@ st.markdown(
             max-width: 900px;
             margin: 0 auto;
             line-height: 1.6;
-            color: #e5e7eb; /* light text for dark themes */
+            color: #1E1E1E; /* dark grey text for light background */
+            font-size: 17px;
         }
-        .content p { color: #d1d5db; font-size: 17px; }
-        .content ul { margin: 10px 0 10px 20px; }
-        .content li { margin: 6px 0; }
-        .content strong { color: #ffffff; }
+        .content p {
+            color: #222222;
+            font-size: 17px;
+            text-align: justify;
+        }
+        .content ul {
+            margin: 10px 0 10px 25px;
+            color: #222222;
+        }
+        .content li {
+            margin: 6px 0;
+        }
+        .content strong {
+            color: #0D2847;
+        }
 
-        .button-wrap { text-align: center; margin-top: 24px; }
+        .button-wrap {
+            text-align: center;
+            margin-top: 35px;
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -62,40 +78,37 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# IMPORTANT: no leading spaces inside <div>, and use pure HTML (no **markdown**)
 st.markdown(
     """
 <div class="content">
 
-<p>The Personal Data Store (PDS) Platform enables individuals to securely upload their
-healthcare data—such as medical reports, fitness records, or wellness metrics—into an
+<p>The Personal Data Store (PDS) Platform empowers individuals to securely upload their
+healthcare data — such as medical reports, fitness records, or wellness metrics — into an
 encrypted personal vault.</p>
 
-<p>Organisations (e.g., research institutes and health technology companies) can request
+<p>Organisations such as research institutes and health technology companies can request
 access to these datasets to develop better healthcare solutions and innovations.</p>
 
-<p>You have complete control over the privacy of every dataset you upload:</p>
+<p>You have full control over the privacy of each dataset you upload:</p>
 <ul>
   <li><strong>Private</strong> — Only you can access it.</li>
-  <li><strong>Trusted</strong> — Only the approved organisations you select can view and use it.</li>
+  <li><strong>Trusted</strong> — Approved organisations you choose can view and use it.</li>
   <li><strong>Public</strong> — Share openly to support global healthcare research.</li>
 </ul>
 
 <p>Each time an organisation downloads your dataset, you earn <strong>1 reward point</strong>
-(worth <strong>$0.10</strong>). Rewards accumulate over time, so you benefit directly from
-contributing to healthcare advancement.</p>
+(worth <strong>$0.10</strong>). These rewards accumulate over time, giving you a direct
+benefit from supporting healthcare progress.</p>
 
-<p>All actions—uploads, permission changes, access requests, downloads, and rewards—are
-securely logged for transparency and accountability.</p>
+<p>Every action — upload, access, and reward — is securely logged to ensure transparency and trust.</p>
 
-<div class="button-wrap">
-</div>
 </div>
     """,
     unsafe_allow_html=True
 )
 
 # ---------- Navigation button ----------
-# Put the button after the HTML so Streamlit renders it as a native widget
-if st.button("Go to Login / Sign Up", use_container_width=True):
+st.markdown('<div class="button-wrap">', unsafe_allow_html=True)
+if st.button("Go to Login / Sign Up", use_container_width=False):
     st.switch_page("pages/0_Login.py")
+st.markdown('</div>', unsafe_allow_html=True)
