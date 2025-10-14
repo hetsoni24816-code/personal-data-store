@@ -12,7 +12,7 @@ import streamlit as st
 
 st.set_page_config(page_title="HealthVault — Personal Data Store", page_icon="🔒", layout="wide")
 
-# ---------- CSS & Fonts (must be in <style>, must use unsafe_allow_html=True) ----------
+# ---------- CSS & Fonts ----------
 st.markdown(
     """
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@ st.markdown(
 
 <style>
 :root{
-  --brand:#0D55FF; --brand-dark:#0D2847; --chip:#F2F6FB;
+  --brand:#0D55FF; --brand-dark:#0D2847; --chip:#F2F6FB; --ink:#0F1F2E;
 }
 
 /* Sidebar */
@@ -34,14 +34,25 @@ st.markdown(
 /* Hero */
 .hero{ margin: 10px auto 8px auto; text-align:center; }
 .logo-wrap{
-  width:84px; height:84px; margin:0 auto 6px auto;
+  width:84px; height:84px; margin:0 auto 10px auto;
   background: radial-gradient(120px 120px at 50% 30%, #BFE0FF 0%, rgba(191,224,255,0.0) 60%),
               linear-gradient(135deg, #0EA5E9 0%, #1D4ED8 100%);
   border-radius:22px; box-shadow: 0 10px 25px rgba(13,85,255,0.25); position:relative;
 }
 .logo-wrap:before{ content:""; position:absolute; inset:14px; border-radius:16px; background:#0D2847; opacity:.06; }
-.title{ font-weight:800; font-size:38px; color:#0EA5E9; letter-spacing:.2px; text-shadow:0 1px 0 #fff; }
-.subtitle{ margin-top:2px; color:#223041; font-size:18px; font-weight:600; }
+
+/* Title & Slogan */
+.title{ font-weight:800; font-size:40px; color:var(--ink); letter-spacing:.2px; }
+.slogan{
+  display:inline-block; margin-top:8px;
+  padding:10px 14px; font-weight:700; font-size:16px; color:var(--ink);
+  background:linear-gradient(0deg,#FFFFFF 0%,#F6FAFF 100%);
+  border:1px solid #E0E8F5; border-radius:14px;
+  box-shadow:0 8px 18px rgba(13,85,255,.06);
+}
+
+/* Subtitle */
+.subtitle{ margin-top:10px; color:#223041; font-size:16px; font-weight:600; }
 
 /* Pills */
 .pills{ margin:14px auto 18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
@@ -52,7 +63,7 @@ st.markdown(
 }
 
 /* Grid */
-.grid{ max-width:980px; margin:6px auto 0; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.grid{ max-width:980px; margin:12px auto 0; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 @media (max-width:900px){ .grid{ grid-template-columns:1fr; } }
 
 /* Cards */
@@ -74,7 +85,7 @@ st.markdown(
 
 /* CTA */
 .cta-bar{
-  max-width:520px; margin:26px auto 12px; background:linear-gradient(90deg, #0D55FF, #18C08D);
+  max-width:560px; margin:26px auto 12px; background:linear-gradient(90deg, #0D55FF, #18C08D);
   border-radius:12px; padding:8px; text-align:center; box-shadow:0 16px 30px rgba(13,85,255,.25);
 }
 .halo{ width:100%; max-width:760px; margin:0 auto; height:80px;
@@ -84,6 +95,9 @@ st.markdown(
 .chips{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:14px auto 8px;}
 .chip{ background:var(--chip); border:1px solid #E5EEF7; color:#26405A; padding:8px 12px; border-radius:999px; font-weight:600; font-size:12px; }
 .footer{ text-align:center; color:#6C7C90; font-size:12px; margin:12px 0 6px; }
+
+/* Small helper text */
+.muted{ color:#5B6B7D; font-size:12px; margin-top:8px; }
 </style>
     """,
     unsafe_allow_html=True
@@ -95,7 +109,9 @@ st.markdown(
 <div class="hero">
   <div class="logo-wrap"></div>
   <div class="title">HealthVault</div>
-  <div class="subtitle">Your Health Data, Your Control</div>
+
+  <div class="slogan">Your Health Data. Your Control. Your Benefit.</div>
+  <div class="subtitle">Store securely · Share with consent · Earn as it is used</div>
 
   <div class="pills">
     <div class="pill">🔒 Secure</div>
@@ -110,45 +126,53 @@ st.markdown(
 # ---------- GRID 2×2 ----------
 st.markdown('<div class="grid">', unsafe_allow_html=True)
 
+# Card 1 - Blue
 st.markdown(
     """
     <div class="card">
       <div class="badge-num">1</div>
-      <div style="display:flex;align-items:center;"><div class="icon">🏷️</div><h3>Business Case</h3></div>
-      <p>People lose control of their health data. HealthVault lets you securely store, manage, and share your data — and earn rewards when authorised organisations access it.</p>
+      <div style="display:flex;align-items:center;"><div class="icon">🏷️</div><h3>How HealthVault Works</h3></div>
+      <p>Upload and manage your personal health data in a private, encrypted environment. Files are stored securely so that only you can access them unless you grant permission. Your data is held in encrypted SQLite which protects your information even when the app is offline.</p>
+      <p class="muted">You are always in control with clear visibility settings for each dataset.</p>
     </div>
     """,
     unsafe_allow_html=True
 )
 
+# Card 2 - Green
 st.markdown(
     """
     <div class="card border-green">
       <div class="badge-num green">2</div>
-      <div style="display:flex;align-items:center;"><div class="icon green">🧠</div><h3>Why It’s Innovative</h3></div>
-      <p>End-to-end encryption, consent-driven sharing, smart rewards, and transparency compliant with NZ Privacy Act 2020 & GDPR.</p>
+      <div style="display:flex;align-items:center;"><div class="icon green">🧠</div><h3>Trusted Access</h3></div>
+      <p>Mark a dataset as Trusted to allow verified organisations and researchers to request access. You review and approve each request before any download occurs. After approval, the organisation can securely retrieve your dataset.</p>
+      <p class="muted">Every download from a different verified organisation rewards you with 1 point valued at $0.10.</p>
     </div>
     """,
     unsafe_allow_html=True
 )
 
+# Card 3 - Blue
 st.markdown(
     """
     <div class="card">
       <div class="badge-num">3</div>
-      <div style="display:flex;align-items:center;"><div class="icon">🔐</div><h3>Why It’s Better</h3></div>
-      <p>You own your data. Every access is logged and auditable. Encrypted SQLite storage ensures full security.</p>
+      <div style="display:flex;align-items:center;"><div class="icon">🔐</div><h3>Public Data Sharing</h3></div>
+      <p>Mark a dataset as Public to let both users and organisations view and download anonymised information for research and innovation. Public visibility helps your data contribute to community insights and healthcare improvements.</p>
+      <p class="muted">You can switch visibility back to Private or Trusted at any time.</p>
     </div>
     """,
     unsafe_allow_html=True
 )
 
+# Card 4 - Green
 st.markdown(
     """
     <div class="card border-green">
       <div class="badge-num green">4</div>
-      <div style="display:flex;align-items:center;"><div class="icon green">👥</div><h3>Why People Will Use It</h3></div>
-      <p>Patients gain privacy; researchers get ethical data; and providers simplify compliance — building a trusted health-data ecosystem.</p>
+      <div style="display:flex;align-items:center;"><div class="icon green">👥</div><h3>Privacy and Compliance</h3></div>
+      <p>HealthVault follows strict data protection standards aligned with the New Zealand Privacy Act 2020 and the General Data Protection Regulation. Access requests, approvals, and downloads are logged to provide full transparency.</p>
+      <p class="muted">Consent driven access protects your rights while enabling secure collaboration.</p>
     </div>
     """,
     unsafe_allow_html=True
@@ -161,7 +185,10 @@ st.markdown('<div class="cta-bar">', unsafe_allow_html=True)
 mid = st.columns([1,3,1])[1]
 with mid:
     if st.button("Empower your health data. Empower yourself.", use_container_width=True):
-        st.switch_page("pages/0_Login.py")
+        try:
+            st.switch_page("pages/0_Login.py")
+        except Exception:
+            st.toast("Go to: pages/0_Login.py")
 st.markdown('</div>', unsafe_allow_html=True)
 st.markdown('<div class="halo"></div>', unsafe_allow_html=True)
 
@@ -174,7 +201,7 @@ st.markdown(
   <div class="chip">🧾 Data Ownership</div>
   <div class="chip">⚡ Real-Time Control</div>
 </div>
-<div class="footer">Team 15 – Members-Only | Vpat766 · Hpat227 · Hson126 · Kpra201</div>
+<div class="footer">Team 7 – Members-Only | Vpat766 · Hpat227 · Hson126 · Kpra201</div>
 """,
     unsafe_allow_html=True
 )
